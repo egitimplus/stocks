@@ -1,0 +1,33 @@
+{% extends 'project/layout/base.html' %}
+
+{% block title %}
+Üye Girişi
+{% endblock %}
+
+{% block top %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Üye Girişi!</h1>
+      <p>
+          {% if user.is_authenticated %}
+            Merhaba {{ user.username }}, üye girişi yaptığınız için tekrar giriş yapamazsınız.
+          {% else %}
+            Hoşgeldiniz aşağıdaki formu kullanarak üye girişi yapabilirsiniz.
+          {% endif %}
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        Merhaba {{ user.username }}, çıkış yapmak için <a href="{% url 'logout' %}">tıklayın</a>.
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Giriş</button>
+        </form>
+    {% endif %}
+{% endblock %}

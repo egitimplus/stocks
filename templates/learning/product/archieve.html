@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+
+{%  block title %}
+    {{ block.super }} - Ürün Arşivi
+{% endblock %}
+
+
+{% block content %}
+{{ year }} yılı {{ month }}. ay ürün arşiv sayfası.<br><br>
+
+{% if products %}
+    <table>
+        {% for product in products %}
+        <tr>
+            <td><a href="{% url 'product-detail' product.id %}">Ürün Adı:</a></td><td>{{ product.name | upper }}</td>
+            <td>Ürün İçeriği:</td><td>{{ product.content }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    Ürün bulunamadı.
+    2019 yılı 6. ay arşivleri için <a href="{% url 'product-archieve' 2019 6 %}">tıklayın.</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Ürün Listeleme
+{% endblock %}
+
+{% block content %}
+Ürün Listeleme Sayfası
+<table>
+{% for product in products %}
+<tr>
+    <td>Ürün Adı:</td><td>{{ product.name | upper }}</td>
+    <td>Ürün İçeriği:</td><td>{{ product.content }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

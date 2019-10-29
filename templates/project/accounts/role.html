@@ -1,0 +1,46 @@
+{% extends 'project/layout/base.html' %}
+
+{% block content %}
+
+    <div class="card-deck">
+    {% if distributors %}
+        {% for distributor in distributors %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'distributor-home' distributor.pk %}">{{ distributor.name }}</a></h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                    {% if distributor.author_id == request.user.id %}
+                        Distribütör Yöneticisi
+                    {% else %}
+                        Distribütör Personeli
+                    {% endif %}
+                    </small>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if dealers %}
+        {% for dealer in dealers %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'dealer-home' dealer.pk %}">{{ dealer.name }}</a></h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                    {% if dealer.author_id == request.user.id %}
+                        Bayi Yöneticisi
+                    {% else %}
+                        Bayi Personeli
+                    {% endif %}
+                    </small>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    </div>
+
+{% endblock %}

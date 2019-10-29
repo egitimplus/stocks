@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Ürün Detayı
+{%  endblock %}
+
+{% block content %}
+ürünün detay sayfası
+
+<br><br>
+Ürün Adı : {{ product_detail.name }}<br><br>
+Ürün Açıklaması : <br><br>
+{{ product_detail.content }}
+<br><br>
+Fiyat: {{ product_detail.price }}
+{% endblock %}
